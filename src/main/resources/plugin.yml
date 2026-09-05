@@ -1,0 +1,25 @@
+name: RankedTiers
+version: '1.0.0'
+main: com.rankedtiers.RankedTiers
+api-version: '1.21'
+author: YourName
+description: Professional MCPVP-style ranked PvP — rating based tiers, kits, arenas, parties and queues.
+commands:
+  play:
+    description: Open the RankedTiers queue menu
+    aliases: [queue, rt]
+  rtadmin:
+    description: RankedTiers administration and kit editor
+    permission: rankedtiers.admin
+    aliases: [rta]
+  party:
+    description: Open and manage your party
+    aliases: [p]
+  cosmetics:
+    description: Choose your unlocked armor trim
+    aliases: [trims, trim]
+permissions:
+  rankedtiers.admin:
+    default: op
+  rankedtiers.play:
+    default: true

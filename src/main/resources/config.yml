@@ -1,0 +1,127 @@
+# RankedTiers configuration
+
+rating:
+  starting: 1000
+  win-gain: 25
+  loss-loss: 20
+  minimum: 0
+
+# Rating thresholds. Higher rating = better tier.
+# Matches the real MCTiers/MCPVP ladder: two sub-ranks per tier level
+# (LT = Low Tier, HT = High Tier), 5 -> 1, worst to best. No "MT" mid-rank.
+# Ascending order: LT5 < HT5 < LT4 < HT4 < LT3 < HT3 < LT2 < HT2 < LT1 < HT1
+tiers:
+  LT5: 0
+  HT5: 900
+  LT4: 1000
+  HT4: 1100
+  LT3: 1200
+  HT3: 1300
+  LT2: 1400
+  HT2: 1500
+  LT1: 1600
+  HT1: 1700
+
+kits:
+  Sword:
+    icon: NETHERITE_SWORD
+    allow-block-place: false
+    allow-block-break: false
+    arena-world: world
+    position1: world,0,100,0,0,0
+    position2: world,10,100,0,180,0
+  Axe:
+    icon: NETHERITE_AXE
+    allow-block-place: false
+    allow-block-break: false
+    arena-world: world
+    position1: world,0,100,20,0,0
+    position2: world,10,100,20,180,0
+  Mace:
+    icon: MACE
+    allow-block-place: false
+    allow-block-break: false
+    arena-world: world
+    position1: world,0,100,40,0,0
+    position2: world,10,100,40,180,0
+  Pot:
+    icon: SPLASH_POTION
+    allow-block-place: false
+    allow-block-break: false
+    arena-world: world
+    position1: world,0,100,60,0,0
+    position2: world,10,100,60,180,0
+  NethPot:
+    icon: SPLASH_POTION
+    allow-block-place: false
+    allow-block-break: false
+    arena-world: world
+    position1: world,0,100,80,0,0
+    position2: world,10,100,80,180,0
+  UHC:
+    icon: GOLDEN_APPLE
+    allow-block-place: true
+    allow-block-break: true
+    arena-world: world
+    position1: world,0,100,100,0,0
+    position2: world,10,100,100,180,0
+  Crystal:
+    icon: END_CRYSTAL
+    allow-block-place: true
+    allow-block-break: true
+    arena-world: world
+    position1: world,0,100,160,0,0
+    position2: world,10,100,160,180,0
+  SMP:
+    icon: GRASS_BLOCK
+    allow-block-place: true
+    allow-block-break: true
+    arena-world: world
+    position1: world,0,100,120,0,0
+    position2: world,10,100,120,180,0
+  Vanilla:
+    icon: DIAMOND_SWORD
+    allow-block-place: false
+    allow-block-break: false
+    arena-world: world
+    position1: world,0,100,140,0,0
+    position2: world,10,100,140,180,0
+
+messages:
+  prefix: "&8[&bRankedTiers&8] &r"
+
+# Cosmetic armor trims, MCPVP-style: purely visual, unlocked as the player's
+# tier goes up. Pattern/material ids must match vanilla trim names.
+# Edit freely - add/remove entries or change the required tier for each one.
+cosmetics:
+  enabled: true
+  patterns:
+    sentry: LT5
+    dune: HT5
+    coast: HT5
+    wild: LT4
+    ward: LT4
+    eye: HT4
+    vex: HT4
+    tide: LT3
+    snout: LT3
+    rib: HT3
+    spire: HT3
+    wayfinder: LT2
+    shaper: LT2
+    silence: HT2
+    raiser: HT2
+    host: LT1
+    flow: HT1
+    bolt: HT1
+  materials:
+    quartz: LT5
+    iron: HT5
+    copper: LT4
+    gold: HT4
+    lapis: LT3
+    amethyst: HT3
+    emerald: LT2
+    diamond: HT2
+    redstone: LT1
+    netherite: HT1
