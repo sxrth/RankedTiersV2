@@ -19,16 +19,20 @@ jobs:
         with:
           distribution: temurin
           java-version: '21'
-          cache: maven
 
-      - name: Build with Maven
-        run: mvn -B clean package
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.10'
+
+      - name: Build with Gradle
+        run: gradle shadowJar
 
       - name: Upload plugin jar
         uses: actions/upload-artifact@v4
         with:
           name: RankedTiers-jar
-          path: target/RankedTiers-*.jar
+          path: build/libs/RankedTiers-*.jar
           if-no-files-found: error
 
   release:
@@ -46,12 +50,16 @@ jobs:
         with:
           distribution: temurin
           java-version: '21'
-          cache: maven
 
-      - name: Build with Maven
-        run: mvn -B clean package
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.10'
+
+      - name: Build with Gradle
+        run: gradle shadowJar
 
       - name: Create GitHub Release with jar attached
         uses: softprops/action-gh-release@v2
         with:
-          files: target/RankedTiers-*.jar
+          files: build/libs/RankedTiers-*.jar
