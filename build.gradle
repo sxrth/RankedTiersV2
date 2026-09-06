@@ -1,20 +1,10 @@
 plugins {
     id 'java'
+    id 'com.gradleup.shadow' version '8.3.9'
 }
 
 group = 'com.rankedtiers'
 version = '1.0.0'
-
-repositories {
-    maven {
-        name = 'papermc'
-        url = uri('https://repo.papermc.io/repository/maven-public/')
-    }
-}
-
-dependencies {
-    compileOnly 'io.papermc.paper:paper-api:1.21.10-R0.1-SNAPSHOT'
-}
 
 java {
     toolchain {
@@ -22,15 +12,31 @@ java {
     }
 }
 
-tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8'
+repositories {
+    mavenCentral()
+    maven { url = 'https://repo.papermc.io/repository/maven-public/' }
 }
 
-jar {
-    archiveBaseName = 'RankedTiers'
-    archiveVersion = project.version
+dependencies {
+    compileOnly 'io.papermc.paper:paper-api:1.21-R0.1-SNAPSHOT'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release.set(21)
 }
 
 processResources {
     filteringCharset = 'UTF-8'
+}
+
+shadowJar {
+    archiveBaseName.set('RankedTiers')
+    archiveVersion.set(project.version.toString())
+    archiveClassifier.set('')
+}
+
+// `gradle build` now also produces the shaded jar under build/libs/
+build {
+    dependsOn shadowJar
 }

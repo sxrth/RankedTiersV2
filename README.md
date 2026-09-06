@@ -2,7 +2,7 @@
 
 A professionalized, MCPVP/MCTiers-style ranked PvP plugin for Paper/Spigot 1.21 — rating-based
 tiers (LT5 → HT1, the real MCTiers two-rank-per-level ladder, no "MT"), configurable kits with dedicated arenas, matchmaking queues,
-a party system, and admin tooling. Rebuilt as a clean Maven project with
+a party system, and admin tooling. Rebuilt as a clean Gradle project with
 proper package structure (data / kit / match / party / rating / commands / gui / listeners)
 instead of one monolithic class.
 
@@ -20,22 +20,29 @@ instead of one monolithic class.
 - Renamed: `HarbourPVP` → `RankedTiers`, commands `/ht` → `/rtadmin`.
 
 ## Build
-Requires JDK 21 and Maven. This plugin depends on the public PaperMC repository
-(declared in `pom.xml`), so building needs network access to
-`repo.papermc.io`.
+Requires JDK 21 and [Gradle](https://gradle.org/install/) (any recent 8.x).
+This plugin depends on the public PaperMC repository (declared in
+`build.gradle`), so building needs network access to `repo.papermc.io`.
 
 ```bash
-mvn clean package
+gradle shadowJar
 ```
 
-The shaded jar will be at `target/RankedTiers-1.0.0.jar`. Drop it into your
-server's `plugins/` folder.
+The shaded jar will be at `build/libs/RankedTiers-1.0.0.jar`. Drop it into
+your server's `plugins/` folder.
+
+There's no committed Gradle wrapper in this zip (generating the wrapper jar
+needs network access I don't have here) — if you'd rather not install Gradle
+globally, run `gradle wrapper` once you have Gradle installed and it'll
+create `gradlew`/`gradlew.bat` for you, so future builds are just
+`./gradlew shadowJar`.
 
 ### Automatic builds (GitHub Actions)
 Every push to `main`/`master` triggers `.github/workflows/build.yml`, which
-compiles the plugin and uploads the jar as a workflow artifact — check the
+installs Gradle itself (no local install or wrapper needed on the CI side),
+compiles the plugin, and uploads the jar as a workflow artifact — check the
 **Actions** tab on GitHub, open the latest run, download `RankedTiers-jar`
-from the "Artifacts" section. No local Java/Maven install needed.
+from the "Artifacts" section.
 
 Pushing a version tag (e.g. `git tag v1.0.0 && git push origin v1.0.0`) also
 creates a GitHub Release with the jar attached automatically.
