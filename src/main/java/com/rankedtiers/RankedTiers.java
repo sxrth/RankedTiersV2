@@ -10,7 +10,9 @@ import com.rankedtiers.gui.QueueMenu;
 import com.rankedtiers.kit.KitManager;
 import com.rankedtiers.listeners.CombatListener;
 import com.rankedtiers.listeners.CosmeticsListener;
+import com.rankedtiers.listeners.LobbyListener;
 import com.rankedtiers.listeners.PlayerListener;
+import com.rankedtiers.lobby.LobbyItemsManager;
 import com.rankedtiers.match.MatchManager;
 import com.rankedtiers.party.PartyManager;
 import com.rankedtiers.rating.RatingService;
@@ -36,6 +38,7 @@ public final class RankedTiers extends JavaPlugin {
     private MatchManager matchManager;
     private PartyManager partyManager;
     private CosmeticsManager cosmeticsManager;
+    private LobbyItemsManager lobbyItemsManager;
 
     private final Map<UUID, QueueMenu> openQueueMenus = new HashMap<>();
     private String messagePrefix;
@@ -51,7 +54,8 @@ public final class RankedTiers extends JavaPlugin {
         this.dataStore = new DataStore(this);
         this.kitManager = new KitManager(this);
         this.ratingService = new RatingService(this);
-        this.matchManager = new MatchManager(dataStore, ratingService, messagePrefix);
+        this.lobbyItemsManager = new LobbyItemsManager(this);
+        this.matchManager = new MatchManager(dataStore, ratingService, lobbyItemsManager, messagePrefix);
         this.partyManager = new PartyManager(messagePrefix);
         this.cosmeticsManager = new CosmeticsManager(this, ratingService);
 
@@ -63,6 +67,7 @@ public final class RankedTiers extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
         getServer().getPluginManager().registerEvents(new CombatListener(this), this);
         getServer().getPluginManager().registerEvents(new CosmeticsListener(this), this);
+        getServer().getPluginManager().registerEvents(new LobbyListener(this), this);
 
         getLogger().info("RankedTiers enabled - " + kitManager.getAll().size() + " kits loaded.");
     }
@@ -101,6 +106,10 @@ public final class RankedTiers extends JavaPlugin {
 
     public CosmeticsManager getCosmeticsManager() {
         return cosmeticsManager;
+    }
+
+    public LobbyItemsManager getLobbyItemsManager() {
+        return lobbyItemsManager;
     }
 
     public String getMessagePrefix() {

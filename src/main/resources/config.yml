@@ -90,6 +90,24 @@ kits:
 messages:
   prefix: "&8[&bRankedTiers&8] &r"
 
+# MCPVP-style clickable hotbar items. Players right-click these instead of
+# typing commands. Slots are hotbar indices 0-8. Set enabled: false to fall
+# back to commands only.
+lobby-items:
+  enabled: true
+  queue:
+    slot: 0
+    material: COMPASS
+    name: "&b&lQueue"
+  party:
+    slot: 4
+    material: NETHER_STAR
+    name: "&d&lParty"
+  cosmetics:
+    slot: 8
+    material: LEATHER_CHESTPLATE
+    name: "&6&lCosmetics"
+
 # Cosmetic armor trims, MCPVP-style: purely visual, unlocked as the player's
 # tier goes up. Pattern/material ids must match vanilla trim names.
 # Edit freely - add/remove entries or change the required tier for each one.

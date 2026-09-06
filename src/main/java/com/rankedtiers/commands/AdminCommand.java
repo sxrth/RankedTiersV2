@@ -38,6 +38,7 @@ public class AdminCommand implements CommandExecutor {
                 plugin.getKitManager().reload();
                 plugin.getRatingService().reload();
                 plugin.getCosmeticsManager().reload();
+                plugin.getLobbyItemsManager().reload();
                 sender.sendMessage(Component.text(plugin.getMessagePrefix() + "Configuration reloaded."));
             }
             case "kits" -> {

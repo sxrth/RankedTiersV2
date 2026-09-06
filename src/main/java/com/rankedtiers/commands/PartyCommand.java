@@ -1,6 +1,7 @@
 package com.rankedtiers.commands;
 
 import com.rankedtiers.RankedTiers;
+import com.rankedtiers.gui.PartyMenu;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -24,7 +25,7 @@ public class PartyCommand implements CommandExecutor {
         }
 
         if (args.length == 0) {
-            player.sendMessage(Component.text(plugin.getMessagePrefix() + "Usage: /party <create|invite|accept|leave> [player]"));
+            player.openInventory(new PartyMenu().build(plugin.getPartyManager(), player));
             return true;
         }
 
